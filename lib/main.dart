@@ -1,6 +1,8 @@
+import 'package:currencytracker/flags.dart';
 import 'package:currencytracker/myhomepage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_currencies_tracker/flutter_currencies_tracker.dart';
+import 'package:toast/toast.dart';
 
 void main() {
   runApp(MyApp());
@@ -53,7 +55,8 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold( backgroundColor: Colors.black,
+    return Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(
         backgroundColor: Colors.blueGrey[900],
         title: Center(
@@ -72,6 +75,47 @@ class _HomeState extends State<Home> {
       ),
       body: Column(
         children: [
+          /*Container(
+            height: 10,
+            color: Colors.black,
+            child: Row(
+              children: [
+                Center(
+                  child: _isLoading == true
+                      ? ListView.builder(
+                          itemCount: _rates.length,
+                          itemBuilder: (context, index) {
+                            return Card(
+                              color: Colors.blueGrey[900],
+                              child: ListTile(
+                                leading: Image.asset(
+                                  flags.values.elementAt(index),
+                                ),
+
+                                /// If you want to use the map
+                                // _fullData.keys.elementAt(index) returns symbol
+                                title: Text(
+                                  '${currenciesMap[_symbol.elementAt(index)]}',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                // _fullData.values.elementAt(index) returns rates
+                                subtitle: Text(
+                                  '${_rates.elementAt(index)}',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
+                        )
+                      : CircularProgressIndicator(),
+                ),
+              ],
+            ),
+          ),*/
           Container(
             height: 580,
             color: Colors.black,
@@ -83,7 +127,9 @@ class _HomeState extends State<Home> {
                         return Card(
                           color: Colors.blueGrey[900],
                           child: ListTile(
-                            leading: Icon(Icons.monetization_on),
+                            leading: Image.asset(
+                              flags.values.elementAt(index),
+                            ),
 
                             /// If you want to use the map
                             // _fullData.keys.elementAt(index) returns symbol
@@ -110,19 +156,19 @@ class _HomeState extends State<Home> {
           Card(
             color: Colors.blueGrey[500],
             child: ListTile(
-              title: Text('account transactions'),
+              title: Text('conversion'),
               leading: Icon(Icons.monetization_on),
               trailing: Icon(Icons.arrow_forward),
               onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => MyHomePage()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => MyHomePage()));
               },
             ),
-          )
+          ),
         ],
       ),
     );
   }
 }
+
+///// ÜST TARAFA LİSTE EKLE VE KARŞILIKLARINI SEÇ
